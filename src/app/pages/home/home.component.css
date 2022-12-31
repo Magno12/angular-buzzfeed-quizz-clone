@@ -1,0 +1,19 @@
+.home_button>button {
+
+
+    border-radius: 10px;
+    background-color: rebeccapurple;
+    color: black;
+    padding: 50px;
+
+}
+
+.home_button {
+
+    border: 1px;
+    border-color: orange;
+    border-radius: 5px;
+    background-color: transparent;
+    color: black;
+    padding: 10px;
+}
