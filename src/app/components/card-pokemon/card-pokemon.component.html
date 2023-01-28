@@ -1,19 +1,23 @@
 <div class="card_conteiner">
 
-    <div class="card__title">
-        <p>Titulo</p>
+    <div *ngIf="!isBoole">
+        <button (click)="inicio()">VAMOS COMEÇAR</button>
     </div>
 
-    <div class="card__imagem">
-        <img src="../../../assets/imgs/pikachu.png" alt="">
-    </div>
-    <div class="card__opcao">
+    <diV *ngIf="isBoole">
+      
+        <div class="card__title">
+            <p>{{pokemon.name | uppercase}} | {{isQuantida}} | {{ boo }} </p>
+        </div>
 
-        <p>Opcoes</p>
-        <p>Opcoes</p>
-        <p>Opcoes</p>
+        <div class="card__imagem">
+            <img [src]="pokemon.sprites.front_default" alt="">
+        </div>
 
-        <button>teste color</button>
-    </div>
+        <p (click)="respostaSelecionada(n.name)" *ngFor="let n of this.listSelecao">{{ n.name | uppercase }}</p>
+
+        <p><button (click)="getListaPokemon()">List</button></p>
+
+    </diV>
 
 </div>
