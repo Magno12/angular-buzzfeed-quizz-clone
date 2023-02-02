@@ -12,6 +12,7 @@ export class CardPokemonComponent implements OnInit {
   pokemon: PokemonInterface | any = {};
   listPokemon: PokemonInterface[] = [];
 
+
   listOpcoes = [
     {
       name: 'kakuna'
@@ -36,22 +37,26 @@ export class CardPokemonComponent implements OnInit {
     },
   ]
 
-  listSelecao: any[] = [{ name: '' }]
+  listSelecao: any[] = [];
 
   nameGeral: string = '';
   imgSrc: string = '';
   id: number = 0;
+
   boo: boolean = false;
+
+  isResultado = false;
   isBoole = false;
   isQuantida = 0;
 
   constructor(private servicePokemon: PokemonService) {
     console.log('construtor');
+    /*  this.servicePokemon.getPokemonTeste(1); */
   }
 
   ngOnInit(): void {
     console.log('ngOnInit');
-    this.Pokemom();
+    this.buscarPokemom();
   }
 
   //numro aleatorioInteiro
@@ -62,25 +67,26 @@ export class CardPokemonComponent implements OnInit {
   }
 
   inicio() {
-    this.Pokemom();
+    this.buscarPokemom();
+
     this.isBoole = true;
-    this.isQuantida = this.getRandomInt(5, 10);// quantidade de perguntas
+    this.isQuantida = this.getRandomInt(3, 7);// quantidade de perguntas
+    this.isResultado = false;
+    this.listPokemon = [];
   }
 
-  Pokemom() {
+  buscarPokemom() {
 
     this.id = this.getRandomInt(1, 1010);
 
     this.pokemon = this.servicePokemon.getPokemonOne(this.id);
-    //this.respostaStatic();
+    console.log('this.pokemon', this.pokemon)
+    /*  this.pokemon.id == 0 ? console.log('service Não inicializado') : this.listPokemon.push(this.pokemon);
+     console.log('lista pokemon',this.listPokemon); */
+
     this.respostaDinamica(); //monta opocoes aleatorias
 
-    console.log('pokemon', this.pokemon);
-    this.pokemon.id === 0 || this.pokemon.sprites.front_default == null ? console.log('vasio') : this.listPokemon.push(this.pokemon);
-
-    //verificar pokemon.sprites.front_default
   }
-
 
   respostaDinamica() {
     let posicaoSelect = this.getRandomInt(0, 3);
@@ -94,47 +100,49 @@ export class CardPokemonComponent implements OnInit {
       if (this.listSelecao.length == 0) {
         this.listSelecao.push(this.listOpcoes[posicaoOpcoes]);
       } else if (this.verificacaoNome(posicaoOpcoes)) {
-        this.listSelecao.push(this.listOpcoes[posicaoOpcoes])
+        this.listSelecao.push(this.listOpcoes[posicaoOpcoes]);
+      } else if (this.listSelecao.length == 1) {
+        i = i - 1;
       }
-
     }
 
     if (this.listSelecao.length <= 4) {
-      this.listSelecao[posicaoSelect].name = this.pokemon.name; //NOME CORRETO
+      this.listSelecao[posicaoSelect].name = this.pokemon.name; //NOME CORRETO, POSICAO ALEATORIA
     };
-
   }
 
   respostaSelecionada(name: string) {
 
-    console.log('Opcao escolhida', name);
-    console.log('certo ou errado', this.verificarResposta(name));
+    console.log('antes', this.isQuantida)
 
-    if (this.isQuantida > 0) {
-      this.Pokemom();
+    if (this.isQuantida >= 1) {
 
-      this.isQuantida--;
-    } else {
-      this.isBoole = !this.isBoole;
+      this.listPokemon.push(this.pokemon);
+
+      if (this.verificarResposta(name)) {
+
+        this.listPokemon[this.listPokemon.length - 1].resul = this.verificarResposta(name);
+      }
+
+      this.buscarPokemom();
+
+      this.isQuantida = this.isQuantida - 1;
+
     }
 
-
+    if (this.isQuantida == 0) {
+      this.isResultado = true;
+      this.isBoole = false
+    }
   }
 
   verificarResposta(name: string): boolean {
     let bool = false;
+
     name == this.pokemon.name ? bool = true : bool = false;
-    this.boo = bool;
+    this.boo = bool; //analisar
+
     return bool;
-  }
-
-  respostaStatic() {
-
-    let posicao = this.getRandomInt(0, this.listOpcoes.length);
-
-    this.pokemon.name != '' ? this.listOpcoes[posicao].name = this.pokemon.name : console.log('vazio');
-
-    this.listSelecao = this.listOpcoes;
   }
 
   verificacaoNome(num: number): boolean {
@@ -150,11 +158,9 @@ export class CardPokemonComponent implements OnInit {
     return bool;
   }
 
-
   getListaPokemon() {
     console.log('Lista de Pokemons', this.listPokemon);
     console.log('List Selecao', this.listSelecao);
   }
-
 
 }

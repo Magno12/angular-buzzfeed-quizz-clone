@@ -5,7 +5,7 @@
     </div>
 
     <diV *ngIf="isBoole">
-      
+
         <div class="card__title">
             <p>{{pokemon.name | uppercase}} | {{isQuantida}} | {{ boo }} </p>
         </div>
@@ -16,8 +16,20 @@
 
         <p (click)="respostaSelecionada(n.name)" *ngFor="let n of this.listSelecao">{{ n.name | uppercase }}</p>
 
+        <p>----------</p>
+
         <p><button (click)="getListaPokemon()">List</button></p>
+        <p>----------</p>
 
     </diV>
 
+    <div *ngIf="isResultado">
+        <div *ngFor="let resul of listPokemon">
+
+            <img [src]="resul.sprites.front_default" alt="">
+
+            <li> {{resul.name}} | {{resul.resul}}</li>
+
+        </div>
+    </div>
 </div>
