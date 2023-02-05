@@ -35,12 +35,16 @@ export class CardPokemonComponent implements OnInit {
     {
       name: 'ivysaur'
     },
+    {
+      name: 'gulpin'
+    },
+    {
+      name: 'croconaw'
+    }
   ]
 
   listSelecao: any[] = [];
 
-  nameGeral: string = '';
-  imgSrc: string = '';
   id: number = 0;
 
   boo: boolean = false;
@@ -49,9 +53,10 @@ export class CardPokemonComponent implements OnInit {
   isBoole = false;
   isQuantida = 0;
 
-  constructor(private servicePokemon: PokemonService) {
+  constructor(
+    private servicePokemon: PokemonService
+  ) {
     console.log('construtor');
-    /*  this.servicePokemon.getPokemonTeste(1); */
   }
 
   ngOnInit(): void {
@@ -59,7 +64,7 @@ export class CardPokemonComponent implements OnInit {
     this.buscarPokemom();
   }
 
-  //numro aleatorioInteiro
+  //numro aleatorios Inteiro
   getRandomInt(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -75,12 +80,15 @@ export class CardPokemonComponent implements OnInit {
     this.listPokemon = [];
   }
 
-  buscarPokemom() {
+  async buscarPokemom() {
 
-    this.id = this.getRandomInt(1, 1010);
+    this.id = await this.getRandomInt(1, 1010);
 
     this.pokemon = this.servicePokemon.getPokemonOne(this.id);
-    console.log('this.pokemon', this.pokemon)
+
+
+    //console.log('this.pokemon', this.pokemon)
+
     /*  this.pokemon.id == 0 ? console.log('service Não inicializado') : this.listPokemon.push(this.pokemon);
      console.log('lista pokemon',this.listPokemon); */
 
@@ -89,6 +97,7 @@ export class CardPokemonComponent implements OnInit {
   }
 
   respostaDinamica() {
+
     let posicaoSelect = this.getRandomInt(0, 3);
 
     this.listSelecao = [];
@@ -106,23 +115,26 @@ export class CardPokemonComponent implements OnInit {
       }
     }
 
+    //colocar maneira de nao repetir o nome correto 
     if (this.listSelecao.length <= 4) {
+
       this.listSelecao[posicaoSelect].name = this.pokemon.name; //NOME CORRETO, POSICAO ALEATORIA
+
     };
+
   }
 
   respostaSelecionada(name: string) {
 
-    console.log('antes', this.isQuantida)
+    //console.log('antes', this.isQuantida)
 
     if (this.isQuantida >= 1) {
 
       this.listPokemon.push(this.pokemon);
 
-      if (this.verificarResposta(name)) {
+      //Inserindo resultado da escolha
+      this.listPokemon[this.listPokemon.length - 1].resul = this.verificarResposta(name);
 
-        this.listPokemon[this.listPokemon.length - 1].resul = this.verificarResposta(name);
-      }
 
       this.buscarPokemom();
 
@@ -151,7 +163,7 @@ export class CardPokemonComponent implements OnInit {
     for (const list in this.listSelecao) {
 
       if (this.listSelecao[list] == this.listOpcoes[num]) {
-        console.log('false', this.listSelecao[list])
+        console.log('false', this.listSelecao[list]);
         return false;
       }
     }

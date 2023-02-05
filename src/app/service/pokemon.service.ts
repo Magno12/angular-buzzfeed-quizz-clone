@@ -33,7 +33,6 @@ export class PokemonService {
             sprites: data.sprites,
             resul: false
           }
-
       );
 
     return this.pokemon

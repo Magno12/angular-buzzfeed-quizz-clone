@@ -1,4 +1,42 @@
-.card__opcao>button {
+.card_conteiner {
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
 
-    color: black;
+    border: 2px solid;
+}
+
+.card__opcao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.card__imagem {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 25%;
+    border: 1px solid;
+}
+
+.card__imagem>img {
+    height: 100%;
+    width: 100%;
+}
+
+.card__opcao button {
+
+    color: white;
+    display: flex;
+    background-color: transparent;
+    margin-top: 13px;
+    cursor: pointer;
+    border: 1px solid;
+
+}
+
+.card__opcao>button:hover {
+    background-color: darkgoldenrod;
 }

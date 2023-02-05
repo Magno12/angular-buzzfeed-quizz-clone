@@ -1,10 +1,10 @@
 <div class="card_conteiner">
 
-    <div *ngIf="!isBoole">
+    <div class="card__opcao" *ngIf="!isBoole">
         <button (click)="inicio()">VAMOS COMEÇAR</button>
     </div>
 
-    <diV *ngIf="isBoole">
+    <diV class="card__opcao" *ngIf="isBoole">
 
         <div class="card__title">
             <p>{{pokemon.name | uppercase}} | {{isQuantida}} | {{ boo }} </p>
@@ -14,21 +14,18 @@
             <img [src]="pokemon.sprites.front_default" alt="">
         </div>
 
-        <p (click)="respostaSelecionada(n.name)" *ngFor="let n of this.listSelecao">{{ n.name | uppercase }}</p>
-
-        <p>----------</p>
-
-        <p><button (click)="getListaPokemon()">List</button></p>
-        <p>----------</p>
+        <div (click)="respostaSelecionada(n.name)" *ngFor="let n of this.listSelecao">
+            <button *ngIf="n.name!=''">{{ n.name | uppercase}}</button>
+        </div>
 
     </diV>
 
-    <div *ngIf="isResultado">
-        <div *ngFor="let resul of listPokemon">
+    <div class="card_opcao" *ngIf="isResultado">
+        <div class="card__imagem" *ngFor="let resul of listPokemon">
 
-            <img [src]="resul.sprites.front_default" alt="">
+            <img src="{{resul.sprites.front_default}}" alt="">
 
-            <li> {{resul.name}} | {{resul.resul}}</li>
+            <li> {{resul.name | uppercase }} | {{resul.resul}}</li>
 
         </div>
     </div>
