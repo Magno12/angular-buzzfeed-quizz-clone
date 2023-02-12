@@ -2,6 +2,8 @@ import { PokemonInterface } from './../../models/PokemonInterface';
 import { PokemonService } from './../../service/pokemon.service';
 import { Component, OnInit } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-card-pokemon',
   templateUrl: './card-pokemon.component.html',
@@ -56,11 +58,11 @@ export class CardPokemonComponent implements OnInit {
   constructor(
     private servicePokemon: PokemonService
   ) {
-    console.log('construtor');
+   // console.log('construtor');
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit');
+    //console.log('ngOnInit');
     this.buscarPokemom();
   }
 
@@ -69,6 +71,10 @@ export class CardPokemonComponent implements OnInit {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  visualisarNome(){
+    this.boo = !this.boo;
   }
 
   inicio() {
@@ -80,9 +86,9 @@ export class CardPokemonComponent implements OnInit {
     this.listPokemon = [];
   }
 
-  async buscarPokemom() {
+  buscarPokemom() {
 
-    this.id = await this.getRandomInt(1, 1010);
+    this.id = this.getRandomInt(1, 1010);
 
     this.pokemon = this.servicePokemon.getPokemonOne(this.id);
 
@@ -97,6 +103,12 @@ export class CardPokemonComponent implements OnInit {
   }
 
   respostaDinamica() {
+
+    if (this.pokemon.sprites.front_default == null) {
+      this.pokemon.sprites.front_default = './../../../assets/imgs/sombraPokemon.jpg'
+    }
+
+   // console.log('', this.pokemon.sprites.front_default)
 
     let posicaoSelect = this.getRandomInt(0, 3);
 
@@ -121,7 +133,6 @@ export class CardPokemonComponent implements OnInit {
       this.listSelecao[posicaoSelect].name = this.pokemon.name; //NOME CORRETO, POSICAO ALEATORIA
 
     };
-
   }
 
   respostaSelecionada(name: string) {
@@ -129,7 +140,7 @@ export class CardPokemonComponent implements OnInit {
     //console.log('antes', this.isQuantida)
 
     if (this.isQuantida >= 1) {
-
+      this.boo = false;
       this.listPokemon.push(this.pokemon);
 
       //Inserindo resultado da escolha
@@ -152,7 +163,7 @@ export class CardPokemonComponent implements OnInit {
     let bool = false;
 
     name == this.pokemon.name ? bool = true : bool = false;
-    this.boo = bool; //analisar
+    //this.boo = bool; //analisar
 
     return bool;
   }
@@ -163,7 +174,7 @@ export class CardPokemonComponent implements OnInit {
     for (const list in this.listSelecao) {
 
       if (this.listSelecao[list] == this.listOpcoes[num]) {
-        console.log('false', this.listSelecao[list]);
+     //   console.log('false', this.listSelecao[list]);
         return false;
       }
     }

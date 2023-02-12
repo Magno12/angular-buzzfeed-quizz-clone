@@ -1,32 +1,44 @@
-<div class="card_conteiner">
+<a class="home" href="/">Home</a>
 
-    <div class="card__opcao" *ngIf="!isBoole">
-        <button (click)="inicio()">VAMOS COMEÇAR</button>
-    </div>
+
+<div class="card__conteiner">
 
     <diV class="card__opcao" *ngIf="isBoole">
 
-        <div class="card__title">
-            <p>{{pokemon.name | uppercase}} | {{isQuantida}} | {{ boo }} </p>
+        <div class="card__title" (click)="visualisarNome()">
+            <p *ngIf="boo">{{pokemon.name | uppercase}} | {{isQuantida}} </p>
+            <p *ngIf="!boo">Ver Nome</p>
         </div>
 
-        <div class="card__imagem">
+        <div class="card__imagem" (click)="visualisarNome()">
             <img [src]="pokemon.sprites.front_default" alt="">
         </div>
 
-        <div (click)="respostaSelecionada(n.name)" *ngFor="let n of this.listSelecao">
+        <div class="card__button" (click)="respostaSelecionada(n.name)" *ngFor="let n of this.listSelecao">
             <button *ngIf="n.name!=''">{{ n.name | uppercase}}</button>
         </div>
 
     </diV>
 
-    <div class="card_opcao" *ngIf="isResultado">
-        <div class="card__imagem" *ngFor="let resul of listPokemon">
+    <div class="card__resposta" *ngIf="isResultado">
 
-            <img src="{{resul.sprites.front_default}}" alt="">
+        <div class="resposta__card" *ngFor="let resul of listPokemon">
 
-            <li> {{resul.name | uppercase }} | {{resul.resul}}</li>
+            <img class="resposta__img" src="{{resul.sprites.front_default}}" alt="">
 
+            <p> {{resul.name | uppercase }}</p>
+            <p *ngIf="resul.resul"> <img src="../../../assets/imgs/certo.jpg" alt="'{{resul.resul}}'" height="45px"
+                    width="45px"> </p>
+            <p *ngIf="!resul.resul"> <img src="../../../assets/imgs/errado.jpg" alt="{{resul.resul}}" height="45px"
+                    width="45px"> </p>
         </div>
     </div>
+
+    <div class="card__menu" (click)="inicio()" *ngIf="!isBoole">
+
+        <!--  <img src="./../../../assets/imgs/sombraPokemon.jpg" width="100%" alt=""> -->
+        <button (click)="inicio()">VAMOS LA clik aqui..</button>
+
+    </div>
+
 </div>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http'
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,13 +15,16 @@ import { CardPokemonComponent } from './components/card-pokemon/card-pokemon.com
     AppComponent,
     QuizzComponent,
     HomeComponent,
-    CardPokemonComponent
+    CardPokemonComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,42 +1,145 @@
-.card_conteiner {
-    width: 50%;
-    margin: auto;
-    margin-top: 20px;
+.card__conteiner {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 
-    border: 2px solid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+ 
+}
+.card__title{
+    padding: 5px;
+}
+.card__opcao {
+    width: 70%;
+    
+    background-color: rgb(48, 48, 46);
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    align-content: center;
+    justify-content: center;
 }
 
-.card__opcao {
+.card__button {
+    margin: 5px;
+    width: 35%;
+    border: 1px solid forestgreen;
+
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+
+}
+
+.card__imagem {
+    width: 100%;
+    background-color: rgb(107, 107, 107);
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
 }
 
-.card__imagem {
-    margin-top: 20px;
-    margin-left: 10px;
-    width: 25%;
-    border: 1px solid;
+.card__imagem img {
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    height: 45%;
+    width: 45%;
 }
 
-.card__imagem>img {
+button {
+    background-color: transparent;
+    color: white;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+a {
+    display: flex;
+    padding: 20px;
+    
+    text-decoration: none;
+
+    justify-content: center;
+   
+
+}
+
+.card__resposta {
+    border: 1px solid black;
+
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+.resposta__card {
+    width: 50%;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+.resposta__img {
+
+    background-color: aliceblue;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+
     height: 100%;
     width: 100%;
+
+    border: 1px solid green;
 }
 
-.card__opcao button {
+.resposta__card p {
 
-    color: white;
     display: flex;
-    background-color: transparent;
-    margin-top: 13px;
-    cursor: pointer;
-    border: 1px solid;
-
+    padding: 5px;
+    margin: auto;
 }
 
-.card__opcao>button:hover {
-    background-color: darkgoldenrod;
+.card__menu {
+    width: 100%;
+    background-color: green;
+    flex-wrap: wrap;
+
+    display: flex;
+
+    justify-content: center;
 }

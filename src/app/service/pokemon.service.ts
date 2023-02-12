@@ -25,13 +25,13 @@ export class PokemonService {
   getPokemonOne(id: number) {
     this.httpClient.get<PokemonInterface>(`${this.urlBase}${id}`)
       .subscribe(
-        (data) =>
+        async (data) =>
 
           this.pokemon = {
-            id: data.id,
-            name: data.name,
-            sprites: data.sprites,
-            resul: false
+            id: await data.id,
+            name: await data.name,
+            sprites: await data.sprites,
+            resul: await false
           }
       );
 

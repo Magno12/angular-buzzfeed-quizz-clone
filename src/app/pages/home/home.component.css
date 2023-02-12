@@ -17,3 +17,15 @@
     color: black;
     padding: 10px;
 }
+
+.quizz_logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.quizz_logo>h3 {
+    margin-top: 20px;
+}
