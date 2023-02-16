@@ -1,20 +1,24 @@
 .home_button>button {
 
-
     border-radius: 10px;
     background-color: rebeccapurple;
     color: black;
     padding: 50px;
 
+    width: 95%;
+
+    margin-left: 20px;
+    margin-right: 20x;
+    margin-bottom: 20px;
+
 }
 
 .home_button {
 
-    border: 1px;
-    border-color: orange;
+    width: 100%;
     border-radius: 5px;
     background-color: transparent;
-    color: black;
+
     padding: 10px;
 }
 

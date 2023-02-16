@@ -55,15 +55,24 @@ export class CardPokemonComponent implements OnInit {
   isBoole = false;
   isQuantida = 0;
 
+  hi = true;
+
   constructor(
     private servicePokemon: PokemonService
   ) {
-   // console.log('construtor');
+    // console.log('construtor');
   }
 
   ngOnInit(): void {
     //console.log('ngOnInit');
     this.buscarPokemom();
+  }
+  testHidde(value: any) {
+    console.log('hidde', value);
+    if (value == "") {
+      console.log('undefined')
+      this.hi = false
+    }
   }
 
   //numro aleatorios Inteiro
@@ -73,7 +82,7 @@ export class CardPokemonComponent implements OnInit {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  visualisarNome(){
+  visualisarNome() {
     this.boo = !this.boo;
   }
 
@@ -86,19 +95,19 @@ export class CardPokemonComponent implements OnInit {
     this.listPokemon = [];
   }
 
-  buscarPokemom() {
+  async buscarPokemom() {
 
     this.id = this.getRandomInt(1, 1010);
 
-    this.pokemon = this.servicePokemon.getPokemonOne(this.id);
+    this.pokemon = await this.servicePokemon.getPokemonOne(this.id);
 
 
-    //console.log('this.pokemon', this.pokemon)
+    //console.log('this.pokemon', this.pokemon);
 
     /*  this.pokemon.id == 0 ? console.log('service Não inicializado') : this.listPokemon.push(this.pokemon);
      console.log('lista pokemon',this.listPokemon); */
 
-    this.respostaDinamica(); //monta opocoes aleatorias
+    this.pokemon.name == '' ? console.log('return vazio') : this.respostaDinamica(); //monta opocoes aleatorias
 
   }
 
@@ -108,7 +117,7 @@ export class CardPokemonComponent implements OnInit {
       this.pokemon.sprites.front_default = './../../../assets/imgs/sombraPokemon.jpg'
     }
 
-   // console.log('', this.pokemon.sprites.front_default)
+    //console.log('', this.pokemon.sprites.front_default)
 
     let posicaoSelect = this.getRandomInt(0, 3);
 
@@ -120,14 +129,20 @@ export class CardPokemonComponent implements OnInit {
 
       if (this.listSelecao.length == 0) {
         this.listSelecao.push(this.listOpcoes[posicaoOpcoes]);
-      } else if (this.verificacaoNome(posicaoOpcoes)) {
+
+      }
+      else if (this.verificacaoNome(posicaoOpcoes)) {
         this.listSelecao.push(this.listOpcoes[posicaoOpcoes]);
-      } else if (this.listSelecao.length == 1) {
+      }
+      else if (this.listSelecao.length == 1) {
         i = i - 1;
       }
+
+      //console.log('procurando nome vazio', this.listSelecao.every((value, index, array) => value.name == ''));
+
     }
 
-    //colocar maneira de nao repetir o nome correto 
+    //maneira de nao repetir o nome correto 
     if (this.listSelecao.length <= 4) {
 
       this.listSelecao[posicaoSelect].name = this.pokemon.name; //NOME CORRETO, POSICAO ALEATORIA
@@ -161,9 +176,7 @@ export class CardPokemonComponent implements OnInit {
 
   verificarResposta(name: string): boolean {
     let bool = false;
-
     name == this.pokemon.name ? bool = true : bool = false;
-    //this.boo = bool; //analisar
 
     return bool;
   }
@@ -172,9 +185,8 @@ export class CardPokemonComponent implements OnInit {
     let bool: boolean = true;
 
     for (const list in this.listSelecao) {
-
-      if (this.listSelecao[list] == this.listOpcoes[num]) {
-     //   console.log('false', this.listSelecao[list]);
+      //analisando
+      if (this.listSelecao[list] === this.listOpcoes[num]) {
         return false;
       }
     }
