@@ -6,14 +6,23 @@
     justify-content: center;
     align-items: center;
     margin-top: 15px;
- 
+
 }
-.card__title{
+
+.card__title {
     padding: 5px;
 }
+
+.card__title :hover {
+    background-color: white;
+    cursor: pointer;
+
+    color: black;
+}
+
 .card__opcao {
     width: 70%;
-    
+
     background-color: rgb(48, 48, 46);
     display: flex;
     flex-wrap: wrap;
@@ -24,9 +33,10 @@
 }
 
 .card__button {
-    
+
     margin: 5px;
     width: 35%;
+
     border: 1px solid forestgreen;
 
     display: flex;
@@ -35,6 +45,16 @@
     align-items: center;
     align-content: center;
     justify-items: center;
+
+}
+
+.card__button :hover {
+
+    margin: 0%;
+    width: 100%;
+
+    cursor: pointer;
+    background-color: black;
 
 }
 
@@ -59,6 +79,10 @@
     width: 45%;
 }
 
+.card__imagem :hover {
+    cursor: pointer;
+}
+
 button {
     background-color: transparent;
     color: white;
@@ -74,11 +98,11 @@ button {
 a {
     display: flex;
     padding: 20px;
-    
+
     text-decoration: none;
 
     justify-content: center;
-   
+
 
 }
 
